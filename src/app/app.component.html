@@ -1,23 +1,17 @@
-<div class="container-fluid">
-    <div style="color: aquamarine;">
-        <h1>{{title}}</h1>
-        <h3>{{description}}</h3>
-    </div>
+<div class="container">
 
-    <div style="width: 300px;">
-        <form (ngsubmit)="onsubmit()">
-            <div class="form-group">
-                <label for="item">item</label>
-                <input type="text" class="form-control" placeholder="enter any text...." id="item" required[(ngModel)]="itemValue" name="item">
-            </div>
-            <div class="btn-group">
-                <button type="submit" class="btn btn-success">submit</button>
-            </div>
-        </form>
 
-    </div>
-    <h2>Content from Firebase</h2>
-    <div class="col-md-3">
-        <pre *ngFor="let item of items | async ">{{item.content}}</pre>
-    </div>
+
+    <input type="number" [(ngModel)]="phoneNumber" id="mobile_no" class="get-input" placeholder="Enter your mobile number">
+
+    <span>
+        <button (click)="sendOtp()" class="button-press">Get OTP</button>
+    </span>
+
+</div>
+
+
+<div class="container">
+    <input [(ngModel)]="otp" class="get-input" type="number">
+    <button (click)="signIn()" class="button-press">Sign In</button>
 </div>

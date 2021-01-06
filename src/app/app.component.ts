@@ -25,12 +25,14 @@ export class AppComponent {
   }
   ngOnIt(){
 
+    window['recaptchaVerifier']=new firebase.default.auth.RecaptchaVerifier('sign-in-button', {
+      'size': 'invisible'
+   });
   }
     sendOtp(){
       console.log(this.phoneNumber)
-      firebase.default.auth().settings.appVerificationDisabledForTesting = true;
 
-var appVerifier = new firebase.default.auth.RecaptchaVerifier('recaptcha-container');
+var appVerifier = window['recaptchaVerifier']
       this.auth.signInWithPhoneNumber('+918930068008',appVerifier)
 .then((confirmationResult) => {
 // SMS sent. Prompt user to type the code from the message, then sign the
@@ -44,5 +46,7 @@ console.log(err)
     signIn(){
       console.log(this.otp )
     }
+    
+
     
   }

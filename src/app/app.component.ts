@@ -1,7 +1,7 @@
 import { Component, Input,OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import  * as firebase from 'firebase';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent {
   phoneNumber = null
   otp = null
 
-  constructor( ){
+  constructor(public auth:AngularFireAuth ){
   
   }
   ngOnIt(){
@@ -28,8 +28,10 @@ export class AppComponent {
   }
     sendOtp(){
       console.log(this.phoneNumber)
-      
-      firebase.auth().signInWithPhoneNumber('+91' + this.phoneNumber,)
+      firebase.default.auth().settings.appVerificationDisabledForTesting = true;
+
+var appVerifier = new firebase.default.auth.RecaptchaVerifier('recaptcha-container');
+      this.auth.signInWithPhoneNumber('+918930068008',appVerifier)
 .then((confirmationResult) => {
 // SMS sent. Prompt user to type the code from the message, then sign the
 // user in with confirmationResult.confirm(code).
